@@ -1,6 +1,7 @@
 import { User } from "../classes/user";
 import { UserTable } from "../models/userModel";
 import express, { Request, Response } from "express";
+import db from "../database";
 
 
 
@@ -11,6 +12,8 @@ const userHandler = (app:express.Application)=>{
     app.post("/users/create",createHandler);
     app.put("/users/update",updateHandler);
     app.delete("/users/delete",deleteHandler);
+    app.get("/users/login",loginHandler);
+    app.get("/users/logout",logoutHandler);
 };
 
 const indexHandler = async(req:Request,res:Response)=>{
@@ -93,11 +96,40 @@ const deleteHandler = async(req:Request,res:Response)=>{
 const loginHandler = async(req:Request,res:Response)=>{
     try
     {
+        const userName:string = req.body.userName;
+        const password:string = req.body.password;
+        const connection = await db.connect();
+        const query1 = "SELECT password,type FROM users WHERE user_name = $1";
+        const result = await connection.query(query1,[userName]);
+        const correctPassword = result.rows[0]["password"];
+        if(password == correctPassword)
+        {
+            const type:number = Number(result.rows[0]["type"]);
+            return res.cookie("type",type).send("Logged in successfully");
+        }
+        else
+        {
+            return res.send("Wrong password, please try again");
+        }
 
     }
     catch(err)
     {
+        console.log(err);
+        res.send("err - wrong user name");
+    }
+};
 
+const logoutHandler = async(req:Request,res:Response)=>{
+    try
+    {
+        res.clearCookie("type");
+        return res.send("logged out");
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.send("error happend");
     }
 };
 
