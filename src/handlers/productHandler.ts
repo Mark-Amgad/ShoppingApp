@@ -2,11 +2,13 @@ import { Request, Response } from "express";
 import express from "express";
 import { Product } from "../classes/product";
 import { ProductTable } from "../models/productModel";
+import db from "../database";
+import { userAuthentication,adminAuthentication } from "./userHandler";
 
 const productHandler = (app:express.Application)=>{
-    app.get("/products/index",indexHandler);
-    // change it to post,put,delete request
-    app.post("/products/create",createHandler);
+    app.get("/products/index",userAuthentication,indexHandler);
+    app.get("/products/show/:productId",showHandler);
+    app.post("/products/create",adminAuthentication,createHandler);
     app.put("/products/update",updateHandler);
     app.delete("/products/delete",deleteHandler);
 };
@@ -22,6 +24,21 @@ const indexHandler = async(req:Request,res:Response)=>{
     {
         console.log(err);
         throw new Error(`${err}`);
+    }
+};
+
+const showHandler = async(req:Request,res:Response)=>{
+    try
+    {
+        const prod_table = new ProductTable();
+        const product = await prod_table.show(Number(req.params.productId));
+        return res.json(product);
+
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.send("error occured");
     }
 };
 

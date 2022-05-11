@@ -8,7 +8,7 @@ import db from "../database";
 
 
 const userHandler = (app:express.Application)=>{
-    app.get("/users/index",indexHandler);
+    app.get("/users/index",adminAuthentication,indexHandler);
     app.post("/users/create",createHandler);
     app.put("/users/update",updateHandler);
     app.delete("/users/delete",deleteHandler);
@@ -99,13 +99,20 @@ const loginHandler = async(req:Request,res:Response)=>{
         const userName:string = req.body.userName;
         const password:string = req.body.password;
         const connection = await db.connect();
-        const query1 = "SELECT password,type FROM users WHERE user_name = $1";
+        const query1 = "SELECT * FROM users WHERE user_name = $1";
         const result = await connection.query(query1,[userName]);
         const correctPassword = result.rows[0]["password"];
         if(password == correctPassword)
         {
             const type:number = Number(result.rows[0]["type"]);
-            return res.cookie("type",type).send("Logged in successfully");
+            const userName = result.rows[0]["user_name"];
+            const firstName = result.rows[0]["first_name"];
+            const lastName = result.rows[0]["last_name"];
+            res.cookie("type",type);
+            res.cookie("firstName",firstName);
+            res.cookie("lasttName",lastName);
+            res.cookie("userName",userName);
+            return res.send("logged in successfully");
         }
         else
         {
@@ -130,6 +137,46 @@ const logoutHandler = async(req:Request,res:Response)=>{
     {
         console.log(err);
         res.send("error happend");
+    }
+};
+
+export const userAuthentication = async(req:Request,res:Response,next:Function)=>{
+    try
+    {
+        const type = Number(req.cookies.type);
+        if(type == 1 || type == 2)
+        {
+            next();
+        }
+        else
+        {
+            res.send("You don't have the Authority to go to this page!");
+        }
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.send("You don't have the Authority to go to this page!");
+    }
+};
+
+export const adminAuthentication = async(req:Request,res:Response,next:Function)=>{
+    try
+    {
+        const type = Number(req.cookies.type);
+        if(type == 2)
+        {
+            next();
+        }
+        else
+        {
+            res.send("You are not the Admin to access this page!");
+        }
+    }
+    catch(err)
+    {
+        res.send("You are not the Admin to access this page!");
+        console.log(err);
     }
 };
 

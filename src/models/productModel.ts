@@ -22,6 +22,25 @@ export class ProductTable
         }
     }
 
+    async show(id:number):Promise<Product>
+    {
+        try
+        {
+            const connection = await db.connect();
+            const query = "SELECT * FROM product WHERE id = $1";
+            let result = await connection.query(query,[id]);
+            connection.release();
+            return result.rows[0];
+            
+
+        }
+        catch(err)
+        {
+            console.log(err);
+            throw err;
+        }
+    }
+
     async create(prod:Product):Promise<Product>
     {
         try
