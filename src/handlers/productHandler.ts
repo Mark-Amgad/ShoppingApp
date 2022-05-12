@@ -9,8 +9,8 @@ const productHandler = (app:express.Application)=>{
     app.get("/products/index",userAuthentication,indexHandler);
     app.get("/products/show/:productId",showHandler);
     app.post("/products/create",adminAuthentication,createHandler);
-    app.put("/products/update",updateHandler);
-    app.delete("/products/delete",deleteHandler);
+    app.put("/products/update",adminAuthentication,updateHandler);
+    app.delete("/products/delete",adminAuthentication,deleteHandler);
 };
 const indexHandler = async(req:Request,res:Response)=>{
 

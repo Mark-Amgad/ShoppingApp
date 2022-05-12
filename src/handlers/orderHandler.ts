@@ -2,15 +2,16 @@ import Order from "../classes/order";
 import { OrderTable } from "../models/orderModel";
 import express,{Application, Request,Response} from "express";
 import db from "../database";
+import { userAuthentication, adminAuthentication } from "./userHandler";
 
 const OrderHandler = (app:Application)=>{
-    app.get("/orders/index",indexHandler);
-    app.post("/orders/create",createHandler);
+    app.get("/orders/index",adminAuthentication,indexHandler);
+    app.post("/orders/create",userAuthentication,createHandler);
     app.get("/orders/update",updateHandler);
-    app.delete("/orders/delete",deleteHandler);
-    app.get("/orders/details",ordersProductsHandler);
-    app.post("/orders/add_product",addProductHandler);
-    app.delete("/orders/remove_product",removeProductHandler);
+    app.delete("/orders/delete",adminAuthentication,deleteHandler);
+    app.get("/orders/details",adminAuthentication,ordersProductsHandler);
+    app.post("/orders/add_product",userAuthentication,addProductHandler);
+    app.delete("/orders/remove_product",userAuthentication,removeProductHandler);
 };
 
 const indexHandler = async(req:Request,res:Response)=>{

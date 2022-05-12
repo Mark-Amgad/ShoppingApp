@@ -10,8 +10,8 @@ import db from "../database";
 const userHandler = (app:express.Application)=>{
     app.get("/users/index",adminAuthentication,indexHandler);
     app.post("/users/create",createHandler);
-    app.put("/users/update",updateHandler);
-    app.delete("/users/delete",deleteHandler);
+    app.put("/users/update",adminAuthentication,updateHandler);
+    app.delete("/users/delete",adminAuthentication,deleteHandler);
     app.get("/users/login",loginHandler);
     app.get("/users/logout",logoutHandler);
 };
