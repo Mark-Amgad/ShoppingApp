@@ -12,7 +12,7 @@ const userHandler = (app:express.Application)=>{
     app.post("/users/create",createHandler);
     app.put("/users/update",adminAuthentication,updateHandler);
     app.delete("/users/delete",adminAuthentication,deleteHandler);
-    app.get("/users/login",loginHandler);
+    app.post("/users/login",loginHandler);
     app.get("/users/logout",logoutHandler);
 };
 
@@ -102,21 +102,24 @@ const loginHandler = async(req:Request,res:Response)=>{
         const query1 = "SELECT * FROM users WHERE user_name = $1";
         const result = await connection.query(query1,[userName]);
         const correctPassword = result.rows[0]["password"];
+        console.log(req.body);
         if(password == correctPassword)
         {
             const type:number = Number(result.rows[0]["type"]);
             const userName = result.rows[0]["user_name"];
             const firstName = result.rows[0]["first_name"];
             const lastName = result.rows[0]["last_name"];
+            /*
             res.cookie("type",type);
             res.cookie("firstName",firstName);
             res.cookie("lasttName",lastName);
             res.cookie("userName",userName);
-            return res.send("logged in successfully");
+            */
+            res.send({msg : "logged in successfully" , type:type,userName:userName,firstName:firstName,lastName:lastName});
         }
         else
         {
-            return res.send("Wrong password, please try again");
+            res.send("Wrong password, please try again");
         }
 
     }
@@ -150,13 +153,14 @@ export const userAuthentication = async(req:Request,res:Response,next:Function)=
         }
         else
         {
-            res.send("You don't have the Authority to go to this page!");
+            res.send("You have to loggin first.");
+            //res.send({hh: "hh"})
         }
     }
     catch(err)
     {
         console.log(err);
-        res.send("You don't have the Authority to go to this page!");
+        res.send("You have to loggin first.");
     }
 };
 
