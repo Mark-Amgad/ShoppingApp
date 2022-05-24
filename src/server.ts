@@ -6,7 +6,7 @@ import userHandler from "./handlers/userHandler";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-const app = express();
+const app = express();;
 const port = 3000;
 app.listen(port,()=>{console.log("Server is alive :D")});
 app.use(cors());
