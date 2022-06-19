@@ -6,7 +6,7 @@ import db from "../database";
 import { userAuthentication,adminAuthentication } from "./userHandler";
 
 const productHandler = (app:express.Application)=>{
-    app.get("/products/index",userAuthentication,indexHandler);
+    app.get("/products/index",indexHandler);
     app.get("/products/show/:productId",showHandler);
     app.post("/products/create",adminAuthentication,createHandler);
     app.put("/products/update",adminAuthentication,updateHandler);
@@ -18,7 +18,7 @@ const indexHandler = async(req:Request,res:Response)=>{
     {
         const product_table = new ProductTable();
         const result = await product_table.index();
-        // call api 
+        console.log("client");
         res.json(result).status(200);
     }
     catch(err)

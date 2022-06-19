@@ -102,31 +102,30 @@ const loginHandler = async(req:Request,res:Response)=>{
         const query1 = "SELECT * FROM users WHERE user_name = $1";
         const result = await connection.query(query1,[userName]);
         const correctPassword = result.rows[0]["password"];
-        console.log(req.body);
         if(password == correctPassword)
         {
             const type:number = Number(result.rows[0]["type"]);
             const userName = result.rows[0]["user_name"];
             const firstName = result.rows[0]["first_name"];
             const lastName = result.rows[0]["last_name"];
-            /*
+            
             res.cookie("type",type);
             res.cookie("firstName",firstName);
             res.cookie("lasttName",lastName);
             res.cookie("userName",userName);
-            */
-            res.send({msg : "logged in successfully" , type:type,userName:userName,firstName:firstName,lastName:lastName});
+            
+            res.json("Successfully");
         }
         else
         {
-            res.send("Wrong password, please try again");
+            res.json("wrong passowrd");
         }
 
     }
     catch(err)
     {
         console.log(err);
-        res.send("err - wrong user name");
+        res.json("error 1");
     }
 };
 
