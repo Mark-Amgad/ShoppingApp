@@ -2,6 +2,7 @@ import { User } from "../classes/user";
 import { UserTable } from "../models/userModel";
 import express, { Request, Response } from "express";
 import db from "../database";
+import bcrypt from "bcrypt";
 
 
 
@@ -38,12 +39,13 @@ const createHandler = async(req:Request,res:Response)=>{
         const firstName:string = req.body.firstName;
         const lastName:string = req.body.lastName;
         const password:string = req.body.password;// the password will be encrypted later
+        const passwordHashed = bcrypt.hashSync(password,10);
         
         if(userName.length < 4 || firstName.length < 4 || lastName.length <4 || password.length<2)
         {
             return res.json("Invalid DATA");
         }
-        const new_user:User = new User(userName,password,firstName,lastName,1);
+        const new_user:User = new User(userName,passwordHashed,firstName,lastName,1);
         const user_table = new UserTable();
         await user_table.create(new_user);
 
@@ -102,7 +104,7 @@ const loginHandler = async(req:Request,res:Response)=>{
         const query1 = "SELECT * FROM users WHERE user_name = $1";
         const result = await connection.query(query1,[userName]);
         const correctPassword = result.rows[0]["password"];
-        if(password == correctPassword)
+        if(bcrypt.compareSync(password,correctPassword))
         {
             const type:number = Number(result.rows[0]["type"]);
             const userName = result.rows[0]["user_name"];
