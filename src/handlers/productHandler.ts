@@ -18,7 +18,6 @@ const indexHandler = async(req:Request,res:Response)=>{
     {
         const product_table = new ProductTable();
         const result = await product_table.index();
-        console.log("client");
         res.json(result).status(200);
     }
     catch(err)
