@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 
 
 
-
+// user endpoints
 const userHandler = (app:express.Application)=>{
     app.get("/users/index",adminAuthentication,indexHandler);
     app.post("/users/create",createHandler);
