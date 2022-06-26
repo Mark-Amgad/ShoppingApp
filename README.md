@@ -5,7 +5,8 @@
 **Note: Node and postgress must be installed on your machine.**<br>
 **step 1:** run ```npm install ``` <br>
 **step 2:** change ```database.json``` file with your local parameters
-```{
+```
+{
     "dev": {
       "driver": "pg",
       "host": "127.0.0.1",
