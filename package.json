@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build_tables" : "db-migrate up",
     "build": "npx tsc",
     "start": "nodemon src/server.ts"
   },

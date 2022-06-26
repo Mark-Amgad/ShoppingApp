@@ -5,6 +5,8 @@ import { ProductTable } from "../models/productModel";
 import db from "../database";
 import { userAuthentication,adminAuthentication } from "./userHandler";
 
+
+// product endpoints
 const productHandler = (app:express.Application)=>{
     app.get("/products/index",indexHandler);
     app.get("/products/show/:productId",showHandler);

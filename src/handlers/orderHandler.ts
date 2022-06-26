@@ -4,6 +4,8 @@ import express,{Application, Request,Response} from "express";
 import db from "../database";
 import { userAuthentication, adminAuthentication } from "./userHandler";
 
+
+// orders endpoints 
 const OrderHandler = (app:Application)=>{
     app.get("/orders/index",adminAuthentication,indexHandler);
     app.post("/orders/create",userAuthentication,createHandler);

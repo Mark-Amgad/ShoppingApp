@@ -5,6 +5,11 @@ CREATE TABLE orders_products(
     order_id integer,
     product_id integer,
     quantity integer,
-    FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE,
-    FOREIGN KEY(product_id) REFERENCES product(id) ON DELETE CASCADE
+    PRIMARY key(order_id,product_id),
+    FOREIGN KEY(order_id) REFERENCES orders(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY(product_id) REFERENCES product(id) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE
 );
