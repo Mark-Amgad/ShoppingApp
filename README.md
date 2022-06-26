@@ -29,8 +29,8 @@
 
 * URL : http://localhost:3000/users/create
 * Method: POST
-* URL body: userName,password,firstName,lastName
-* Example :
+* URL body: userName, password, firstName, lastName
+* Example :<br>
 ![](images/user_create_1.png)
 
 
