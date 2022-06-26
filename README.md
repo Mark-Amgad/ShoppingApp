@@ -1,9 +1,11 @@
 # Shopping app
 
-## **How to setup the project locally ?**
+##
+**How to setup the project locally ?**
 
-#### step 1- run 
-> npm install i
+#### step 1- run
+```npm install ```
+
 
 
 
