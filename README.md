@@ -27,7 +27,19 @@
 
 ### users - sign up
 
-* url : http://localhost:3000/users/create
+* URL : http://localhost:3000/users/create
+* Method: POST
+* URL body: userName,password,firstName,lastName
+* Example :
+```
+{
+    "userName" : "admin",
+    "password" : "admin",
+    "firstName" : "Mark",
+    "lastName" : "Amgad"
+}
+```
+
 
 
 
