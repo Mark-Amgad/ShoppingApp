@@ -15,8 +15,7 @@
       "password": "mark1999"
     }
 }
-```
-<br>
+``` <br>
 **step 2:** run ```npm run build_tables ```
 
 
