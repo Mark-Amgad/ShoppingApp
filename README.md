@@ -31,14 +31,7 @@
 * Method: POST
 * URL body: userName,password,firstName,lastName
 * Example :
-```
-{
-    "userName" : "admin",
-    "password" : "admin",
-    "firstName" : "Mark",
-    "lastName" : "Amgad"
-}
-```
+![](images/user_create_1.png)
 
 
 
