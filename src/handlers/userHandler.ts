@@ -105,7 +105,7 @@ const loginHandler = async(req:Request,res:Response)=>{
         const query1 = "SELECT * FROM users WHERE user_name = $1";
         const result = await connection.query(query1,[userName]);
         const correctPassword = result.rows[0]["password"];
-        if(bcrypt.compareSync(password,correctPassword) || (userName==="admin"&&password==="admin"))
+        if(bcrypt.compareSync(password,correctPassword))
         {
             const type:number = Number(result.rows[0]["type"]);
             const userName = result.rows[0]["user_name"];

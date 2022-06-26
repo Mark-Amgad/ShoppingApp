@@ -23,7 +23,11 @@
 **step 4:** run ```npm run start``` in your terminal (to start the server)<br>
 
 
+## REST APIs
 
+### users - sign up
+
+* url : http://localhost:3000/users/create
 
 
 
