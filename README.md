@@ -3,7 +3,8 @@
 ## How to setup the project locally ?
 
 **Note: Node and postgress must be installed on your machine.**<br>
-**step 1:** in terminal run : ```npm install ``` <br>
+**step 1:** Download the project in a folder on your computer and direct your terminal to this folder. ex: ```YourDirectory/folderName/``` <br>
+**step 1:** run : ```npm install ``` in your terminal <br>
 **step 2:** change ```database.json``` file with your local parameters.<br> Ex:
 ```
 {
@@ -18,8 +19,8 @@
 ```
 <br>
 
-**step 3:** run ```npm run build_tables ```<br>
-**step 4:** run ```npm run start```<br>
+**step 3:** run ```npm run build_tables ``` in your terminal<br>
+**step 4:** run ```npm run start``` in your terminal<br>
 
 
 
