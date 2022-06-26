@@ -21,6 +21,7 @@
 
 **step 3:** run ```npm run build_tables ``` in your terminal(to build the needed tebles in your database)<br>
 **step 4:** run ```npm run start``` in your terminal<br>
+**Ther server is running**
 
 
 
