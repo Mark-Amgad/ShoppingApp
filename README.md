@@ -82,7 +82,7 @@
 ### users - all
 
 * URL : http://localhost:3000/users/index
-* Method: POST
+* Method: GET
 * Required login: admin only
 * URL body: --
 * Response : list of all users
@@ -103,6 +103,8 @@
 ```
 * Negative response(from the admin authentication middleware):<br>
 ```{"msg": "You are not the Admin to access this page!"}```
+
+
 
 
 
