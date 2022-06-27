@@ -68,7 +68,24 @@
     "password" : "1234"
 }
 ```
-* Response : if user name and password are correct, JWT will be generated containing user information including user type(client or admin)
+* Response : if userName and password are correct, JWT will be generated containing user information including user type(1(client) , 2(admin))
+* Positive response:<br>
+```
+{
+    "msg": "Loggedin successfully",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjpudWxsLCJpYXQiOjE2NTYzMjc3ODV9.eY5ZBO6dWKWjAQs90eWbFc61EIom4V25Xn3b4GhEEYI"
+}
+```
+* Negative response:<br>
+```{"msg": "Wrong user name"}``` OR ```{"msg": "Wrong password"}```
+
+### users - all
+
+* URL : http://localhost:3000/users/index
+* Method: POST
+* Required login: admin only
+* URL body: --
+* Response : list of all users
 * Positive response:<br>
 ```
 {
