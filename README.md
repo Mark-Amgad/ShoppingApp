@@ -68,7 +68,7 @@
     "password" : "1234"
 }
 ```
-* Response : json format with 2 keys (msg, token)
+* Response : if user name and password are correct, JWT will be generated containing user information including user type(client or admin)
 * Positive response:<br>
 ```
 {
@@ -77,7 +77,7 @@
 }
 ```
 * Negative response:<br>
-```{"msg": "Wrong user name"}```
+```{"msg": "Wrong user name"}``` OR ```{"msg": "Wrong password"}```
 
 
 
