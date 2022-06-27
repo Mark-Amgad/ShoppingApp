@@ -50,11 +50,11 @@ const createHandler = async(req:Request,res:Response)=>{
         const user_table = new UserTable();
         await user_table.create(new_user);
 
-        return res.json("Account created Successfully!").status(200);
+        return res.send({"msg":"Account created Successfully!","created":1});
     }
     catch(err)
     {
-        res.json("This user name is used or Invalid data");
+        return res.send({"msg":"This user name is already exist!","created":0});
         //throw new Error(`${err}`);
     }
 };

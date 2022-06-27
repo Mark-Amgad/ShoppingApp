@@ -32,7 +32,11 @@
 * URL body: userName, password, firstName, lastName
 * Example :<br>
 ![](images/user_create_1.png)
-* Success response: 
+* Response : json format with 2 keys (msg, signed)
+* Positive response:<br>
+![](images/user_create_2.png)
+* Negative and failed response:<br>
+![](images/user_create_3.png) 
 
 
 
