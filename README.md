@@ -48,10 +48,12 @@
 }
 ```
 * Negative and failed response:<br>
+```
 {
     "msg": "This user name is already exist!",
     "created": 0
 }
+```
 
 
 ### users - login
@@ -63,20 +65,20 @@
 ```
 {
     "userName" : "mark4",
-    "password" : "1234",
-    "firstName" : "Mark",
-    "lastName" : "Amgad"
+    "password" : "1234"
 }
 ```
-* Response : json format with 2 keys (msg, signed)
+* Response : json format with 2 keys (msg, token)
 * Positive response:<br>
 ```
 {
-    "msg": "Account created Successfully!",
-    "created": 1
+    "msg": "Loggedin successfully",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjpudWxsLCJpYXQiOjE2NTYzMjc3ODV9.eY5ZBO6dWKWjAQs90eWbFc61EIom4V25Xn3b4GhEEYI"
 }
 ```
-* Negative and failed response:<br>
+* Negative response:<br>
+```
+{"msg": "Wrong user name"}
 ```
 
 

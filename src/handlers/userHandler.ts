@@ -126,18 +126,17 @@ const loginHandler = async(req:Request,res:Response)=>{
             */
             const token = jwt.sign({"type":type,"userName":userName},"mark99");
             //jwt.sign({"type":type,"userName":userName},"mark99",{expiresIn:"2m"})
-            res.send({"message":"Loggedin successfully","token":token});
+            res.send({"msg":"Loggedin successfully","token":token});
         }
         else
         {
-            res.json("wrong passowrd");
+            res.send({"msg":"Wrong password"});
         }
 
     }
     catch(err)
     {
-        console.log(err);
-        res.json("error 1");
+        res.send({"msg":"Wrong user name"});
     }
 };
 
