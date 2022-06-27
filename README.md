@@ -86,15 +86,23 @@
 * Required login: admin only
 * URL body: --
 * Response : list of all users
-* Positive response:<br>
+* Positive response:(list of json)<br>
 ```
-{
-    "msg": "Loggedin successfully",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjpudWxsLCJpYXQiOjE2NTYzMjc3ODV9.eY5ZBO6dWKWjAQs90eWbFc61EIom4V25Xn3b4GhEEYI"
-}
+[
+    {
+        "id": 2,
+        "user_name": "mark12",
+        "password": "$2b$10$ddy7u8UhZR/Mwmihg0pqBe/RxbOsF9VGS0HxTBeNYW6yPPgVHECtG",
+        "first_name": "Mark",
+        "last_name": "Amgad",
+        "balance": 500,
+        "type": 1
+    },
+    ...
+]
 ```
-* Negative response:<br>
-```{"msg": "Wrong user name"}``` OR ```{"msg": "Wrong password"}```
+* Negative response(from the admin authentication middleware):<br>
+```{"msg": "You are not the Admin to access this page!"}```
 
 
 

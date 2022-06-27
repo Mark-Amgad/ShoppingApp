@@ -23,7 +23,7 @@ const indexHandler = async(req:Request,res:Response)=>{
     {
         const user_table = new UserTable();
         const result = await user_table.index();
-        res.json(result).status(200);
+        res.send(result).status(200);
     }
     catch(err)
     {
@@ -193,7 +193,7 @@ export const adminAuthentication = async(req:Request,res:Response,next:Function)
         }
         else
         {
-            res.send("You are not the Admin to access this page!");
+            res.send({"msg":"You are not the Admin to access this page!"});
         }
     }
     catch(err)
