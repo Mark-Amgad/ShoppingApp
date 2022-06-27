@@ -31,12 +31,27 @@
 * Method: POST
 * URL body: userName, password, firstName, lastName
 * Example :<br>
-![](images/user_create_1.png)
+```
+{
+    "userName" : "mark4",
+    "password" : "1234",
+    "firstName" : "Mark",
+    "lastName" : "Amgad"
+}
+```
 * Response : json format with 2 keys (msg, signed)
 * Positive response:<br>
-![](images/user_create_2.png)
+```
+{
+    "msg": "Account created Successfully!",
+    "created": 1
+}
+```
 * Negative and failed response:<br>
-![](images/user_create_3.png) 
+{
+    "msg": "This user name is already exist!",
+    "created": 0
+}
 
 
 ### users - login
@@ -53,12 +68,16 @@
     "lastName" : "Amgad"
 }
 ```
-![](images/user_create_1.png)
 * Response : json format with 2 keys (msg, signed)
 * Positive response:<br>
-![](images/user_create_2.png)
+```
+{
+    "msg": "Account created Successfully!",
+    "created": 1
+}
+```
 * Negative and failed response:<br>
-![](images/user_create_3.png)
+```
 
 
 
