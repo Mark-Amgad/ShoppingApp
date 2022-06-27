@@ -102,7 +102,7 @@ const loginHandler = async(req:Request,res:Response)=>{
         const userName:string = req.body.userName;
         const password:string = req.body.password;
         const connection = await db.connect();
-        const query1 = "SELECT * FROM users WHERE user_name = $1";
+        const query1 = "SELECT password FROM users WHERE user_name = $1";
         const result = await connection.query(query1,[userName]);
         const correctPassword = result.rows[0]["password"];
         if(bcrypt.compareSync(password,correctPassword))
@@ -117,8 +117,8 @@ const loginHandler = async(req:Request,res:Response)=>{
             req.session.type = type;
             req.session.name = userName;
             */
-            res.cookie("type" , type);
-            res.cookie("userName",userName);
+            //res.cookie("type" , type);
+            //res.cookie("userName",userName);
             /*
             res.cookie("firstName",firstName);
             res.cookie("lastName",lastName);

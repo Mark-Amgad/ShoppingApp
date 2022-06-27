@@ -39,6 +39,28 @@
 ![](images/user_create_3.png) 
 
 
+### users - login
+
+* URL : http://localhost:3000/users/login
+* Method: POST
+* URL body: userName, password
+* Example :<br>
+```
+{
+    "userName" : "mark4",
+    "password" : "1234",
+    "firstName" : "Mark",
+    "lastName" : "Amgad"
+}
+```
+![](images/user_create_1.png)
+* Response : json format with 2 keys (msg, signed)
+* Positive response:<br>
+![](images/user_create_2.png)
+* Negative and failed response:<br>
+![](images/user_create_3.png)
+
+
 
 
 
