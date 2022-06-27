@@ -77,9 +77,7 @@
 }
 ```
 * Negative response:<br>
-```
-{"msg": "Wrong user name"}
-```
+```{"msg": "Wrong user name"}```
 
 
 
