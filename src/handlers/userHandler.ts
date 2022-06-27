@@ -102,7 +102,7 @@ const loginHandler = async(req:Request,res:Response)=>{
         const userName:string = req.body.userName;
         const password:string = req.body.password;
         const connection = await db.connect();
-        const query1 = "SELECT password FROM users WHERE user_name = $1";
+        const query1 = "SELECT password,type FROM users WHERE user_name = $1";
         const result = await connection.query(query1,[userName]);
         const correctPassword = result.rows[0]["password"];
         if(bcrypt.compareSync(password,correctPassword))
@@ -158,9 +158,11 @@ export const userAuthentication = async(req:Request,res:Response,next:Function)=
     try
     {
         const type = Number(req.cookies.type);
-        const token = req.headers.authorization?.split(" ")[1];
+        const token:string|any = req.headers.authorization?.split(" ")[1];
         console.log(token);
-        if(type == 1 || type == 2)
+        const decode:any = jwt.verify(token,"mark99");
+        console.log(decode["type"]);
+        if(decode["type"] === 1 || decode["type"] === 2)
         {
             next();
         }

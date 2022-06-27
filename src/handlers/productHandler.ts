@@ -8,7 +8,7 @@ import { userAuthentication,adminAuthentication } from "./userHandler";
 
 // product endpoints
 const productHandler = (app:express.Application)=>{
-    app.get("/products/index",indexHandler);
+    app.get("/products/index",userAuthentication,indexHandler);
     app.get("/products/show/:productId",showHandler);
     app.post("/products/create",adminAuthentication,createHandler);
     app.put("/products/update",adminAuthentication,updateHandler);
