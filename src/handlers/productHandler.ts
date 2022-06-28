@@ -60,11 +60,12 @@ const createHandler = async(req:Request,res:Response)=>{
             productStatus);
         const prod_table = new ProductTable();
         const result = await prod_table.create(prod);
-        res.send("Successfully added").status(200);
+        return res.send({"msg":"added successfully","added":1,"porduct":result}).status(200);
         //res.json(result).status(200);
     }
     catch(err)
     {
+        return res.send({"msg":"failed!","added":0}).status(200);
         console.log(err);
         //throw new Error(`${err}`);
     }
@@ -88,7 +89,7 @@ const updateHandler = async(req:Request,res:Response)=>{
 
         const prod_table = new ProductTable();
         const result = await prod_table.update(ID,prod);
-        res.send("updated successfully").status(200);
+        res.send({"msg":"updated successfully"}).status(200);
         //res.json(result).status(200);
     }
     catch(err)

@@ -106,6 +106,46 @@
 
 
 
+### products - create
+
+* URL : http://localhost:3000/products/create
+* Method: POST
+* Required login: admin only
+* URL body: name, description, price, category, status<br>
+* Example: <br>
+```
+{
+    "name" : "Iphone-10",
+    "description" : "ANY TEXT HERE",
+    "price":500,
+    "category":"mobiles",
+    "status" : 1
+}
+```
+
+* Response : msg, added, product(json)
+* Positive response:<br>
+```
+{
+    "msg": "added successfully",
+    "added": 1,
+    "porduct": {
+        "id": 3,
+        "name": "Iphone-10",
+        "price": 500,
+        "category": "mobiles",
+        "status": 1,
+        "description": "ANY TEXT HERE",
+        "likes": 0,
+        "dislikes": 0
+    }
+}
+```
+* Negative response:<br>
+```{"msg": "failed!","added": 0}```
+
+
+
 
 
 
