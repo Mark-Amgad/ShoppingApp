@@ -20,10 +20,11 @@ const indexHandler = async(req:Request,res:Response)=>{
     {
         const product_table = new ProductTable();
         const result = await product_table.index();
-        res.json(result).status(200);
+        return res.send({"products" : result}).status(200);
     }
     catch(err)
     {
+        return res.send({"message":"failed!"});
         console.log(err);
         throw new Error(`${err}`);
     }
@@ -34,13 +35,14 @@ const showHandler = async(req:Request,res:Response)=>{
     {
         const prod_table = new ProductTable();
         const product = await prod_table.show(Number(req.params.productId));
-        return res.json(product);
+        if(product["id"]===null) throw new Error();
+        return res.send({"product":product});
 
     }
     catch(err)
     {
-        console.log(err);
-        res.send("error occured");
+        //console.log(err);
+        return res.send({"msg":"This id does not exist"});
     }
 };
 

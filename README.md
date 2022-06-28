@@ -29,7 +29,7 @@
 
 * URL : http://localhost:3000/users/create
 * Method: POST
-* URL body: userName, password, firstName, lastName
+* Required body: userName, password, firstName, lastName
 * Example :<br>
 ```
 {
@@ -60,7 +60,7 @@
 
 * URL : http://localhost:3000/users/login
 * Method: POST
-* URL body: userName, password
+* Required body: userName, password
 * Example :<br>
 ```
 {
@@ -84,7 +84,7 @@
 * URL : http://localhost:3000/users/index
 * Method: GET
 * Required login: admin only
-* URL body: --
+* Required body: --
 * Response : list of all users
 * Positive response:(list of json)<br>
 ```
@@ -111,7 +111,7 @@
 * URL : http://localhost:3000/products/create
 * Method: POST
 * Required login: admin only
-* URL body: name, description, price, category, status<br>
+* Required body: name, description, price, category, status<br>
 * Example: <br>
 ```
 {
@@ -143,6 +143,64 @@
 ```
 * Negative response:<br>
 ```{"msg": "failed!","added": 0}```
+
+
+### products - all
+
+* URL : http://localhost:3000/products/index
+* Method: GET
+* Required login: client or admin
+* Required body: --<br>
+* Response : products(list of json format)
+* Positive response:<br>
+```
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Iphone-10",
+            "price": 500,
+            "category": "mobiles",
+            "status": 1,
+            "description": "ANY TEXT HERE",
+            "likes": 0,
+            "dislikes": 0
+        },
+        ...
+        ]
+}
+```
+* Negative response:<br>
+```{"msg": "failed!"}```
+
+
+
+
+### products - show
+
+* URL : http://localhost:3000/products/show/id
+* Method: GET
+* Required login: client or admin
+* Required params: id<br>
+* Example:
+```http://localhost:3000/products/show/1 ```
+* Response : product(json)
+* Positive response:<br>
+```
+{
+    "id": 1,
+    "name": "Iphone-10",
+    "price": 500,
+    "category": "mobiles",
+    "status": 1,
+    "description": "ANY TEXT HERE",
+    "likes": 0,
+    "dislikes": 0
+}
+```
+* Negative response:<br>
+```{"msg": "This id does not exist"}```
+
 
 
 
