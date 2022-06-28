@@ -25,7 +25,7 @@
 
 ## REST APIs
 
-### users - sign up
+### 1- users - sign up
 
 * URL : http://localhost:3000/users/create
 * Method: POST
