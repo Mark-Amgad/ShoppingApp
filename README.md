@@ -214,3 +214,66 @@
 
 
  
+
+
+### 7. products - update
+
+* URL : http://localhost:3000/products/update
+* Method: PUT
+* Required login: admin only
+* Required body: name, description, price, category, status<br>
+* Example:
+```
+{
+    "name" : "Iphone-10",
+    "description" : "ANY TEXT HERE",
+    "price":500,
+    "category":"mobiles",
+    "status" : 1
+}
+```
+* Response : product(json)
+* Positive response:<br>
+```{"msg":"updated successfully"}```
+* Negative response:<br>
+```{"msg": "failed!"}```
+
+
+### 8. products - delete
+
+* URL : http://localhost:3000/products/delete
+* Method: DELETE
+* Required login: admin only
+* Required body: id<br>
+* Example:
+```{"id" : "3"}```
+* Response : product(json)
+* Positive response:<br>
+```{"msg":"Deleted successfully"}```
+* Negative response:<br>
+```{"msg": "This id doesn't exist!"}```
+
+
+
+
+
+
+
+
+
+
+
+
+### 9. orders - create
+// start here (NOT FINISHED)
+* URL : http://localhost:3000/orders/create
+* Method: POST
+* Required login: client or admin
+* Required body: userName, totalMoney, numberOfProducts<br>
+* Example:
+```{"id" : "3"}```
+* Response : product(json)
+* Positive response:<br>
+```{"msg":"Deleted successfully"}```
+* Negative response:<br>
+```{"msg": "This id doesn't exist!"}```

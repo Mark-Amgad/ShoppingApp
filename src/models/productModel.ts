@@ -101,14 +101,18 @@ export class ProductTable
         try
         {
             const connection = await db.connect();
-            const query = "DELETE FROM product WHERE id = $1";
-            const result = await connection.query(query,[id]);
+            const quer1 = "SELECT name from product WHERE id = $1";
+            let result_1:any = await connection.query(quer1,[id]);
+            result_1 = result_1.rows;
+            if(result_1.length === 0) throw new Error();
+            const query2 = "DELETE FROM product WHERE id = $1";
+            const result = await connection.query(query2,[id]);
             connection.release();
         }
         catch(err)
         {
             console.log("model - product - delete - error");
-            throw new Error(`${err}`);
+            throw new Error();
         }
     }
 }

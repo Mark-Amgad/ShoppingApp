@@ -9,7 +9,7 @@ import { userAuthentication,adminAuthentication } from "./userHandler";
 // product endpoints
 const productHandler = (app:express.Application)=>{
     app.get("/products/index",userAuthentication,indexHandler);
-    app.get("/products/show/:productId",showHandler);
+    app.get("/products/show/:productId",userAuthentication,showHandler);
     app.post("/products/create",adminAuthentication,createHandler);
     app.put("/products/update",adminAuthentication,updateHandler);
     app.delete("/products/delete",adminAuthentication,deleteHandler);
@@ -96,7 +96,7 @@ const updateHandler = async(req:Request,res:Response)=>{
     }
     catch(err)
     {
-        console.log(err);
+        return res.send({"msg":"failed!"})
     }
 };
 
@@ -106,11 +106,12 @@ const deleteHandler = async(req:Request,res:Response)=>{
         const ID = Number(req.body.id);
         const prod_table = new ProductTable();
         await prod_table.delete(ID);
-        res.send("Delete successfully").status(200);
+        return res.send({"msg":"Deleted successfully"}).status(200);
     }
     catch(err)
     {
-        console.log(err);
+        return res.send({"msg":"This id doesn't exist!"});
+        //console.log(err);
     }
 };
 
