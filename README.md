@@ -56,7 +56,7 @@
 ```
 
 
-### users - login
+### 2. users - login
 
 * URL : http://localhost:3000/users/login
 * Method: POST
@@ -79,7 +79,7 @@
 * Negative response:<br>
 ```{"msg": "Wrong user name"}``` OR ```{"msg": "Wrong password"}```
 
-### users - all
+### 3. users - all
 
 * URL : http://localhost:3000/users/index
 * Method: GET
@@ -106,7 +106,7 @@
 
 
 
-### products - create
+### 4. products - create
 
 * URL : http://localhost:3000/products/create
 * Method: POST
@@ -145,7 +145,7 @@
 ```{"msg": "failed!","added": 0}```
 
 
-### products - all
+### 5. products - all
 
 * URL : http://localhost:3000/products/index
 * Method: GET
@@ -176,7 +176,7 @@
 
 
 
-### products - show
+### 6. products - show
 
 * URL : http://localhost:3000/products/show/id
 * Method: GET
