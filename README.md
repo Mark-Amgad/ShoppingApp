@@ -247,7 +247,6 @@
 * Required body: id<br>
 * Example:
 ```{"id" : "3"}```
-* Response : product(json)
 * Positive response:<br>
 ```{"msg":"Deleted successfully"}```
 * Negative response:<br>
@@ -265,15 +264,23 @@
 
 
 ### 9. orders - create
-// start here (NOT FINISHED)
+
 * URL : http://localhost:3000/orders/create
 * Method: POST
 * Required login: client or admin
-* Required body: userName, totalMoney, numberOfProducts<br>
+* Required body:productsIds(list),amounts(list), userName, totalMoney, numberOfProducts<br>
 * Example:
-```{"id" : "3"}```
-* Response : product(json)
+```
+{
+    "userName" : "mark1","productsIds":[1,2],
+    "amounts" : [4,4],
+    "totalMoney" : 5000,
+    "numberOfProducts":8
+}
+```
 * Positive response:<br>
-```{"msg":"Deleted successfully"}```
+```{"msg":"Order created"}```
 * Negative response:<br>
-```{"msg": "This id doesn't exist!"}```
+```{"msg": "Wrong inputs"}```
+
+

@@ -34,9 +34,9 @@ export class OrderTable
                 o.getTotalMoney(),
                 o.getNumberOfProducts()
             ]);
-            result = result.rows;
+
             connection.release();
-            return result[0];
+            return result.rows[0]["id"];
         }
         catch(err)
         {

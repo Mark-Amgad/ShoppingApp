@@ -32,33 +32,51 @@ const indexHandler = async(req:Request,res:Response)=>{
 const createHandler = async(req:Request,res:Response)=>{
     try
     {
-        const userId = Number(req.body.userId);
+        // inputs: list of products ids,list of amount of each product
+        // inputs: numberOfProducts,totalMoney, userName
+        const productsIds = req.body.productsIds;
+        const amounts = req.body.amounts;
+        const userName:string = String(req.body.userName);
+        const numberOfProducts: number = Number(req.body.numberOfProducts);
+        const totalMoney: number = Number(req.body.totalMoney);
+        /*
+        console.log(productsIds);
+        console.log(amounts);
+        console.log(userName);
+        console.log(numberOfProducts);
+        console.log(totalMoney);
+        */
+        //-----------------
+        const connection = await db.connect();
+        const query1 = "SELECT id FROM users WHERE user_name = $1";
+        const resultTable = await connection.query(query1,[userName]);
+        const userId = resultTable.rows[0]["id"];
+        //------------
+        //console.log(userId);
+        //-----------
         const order_table = new OrderTable();
-        const o:Order = new Order(userId,1);
+        const o:Order = new Order(userId,1,totalMoney,numberOfProducts);
         const result = await order_table.create(o);
-        res.json(result).status(200);
+        let orderId = result;
+        //-----------------
+        for(let i = 0 ; i < productsIds.length;i++)
+        {
+            let query2 = "INSERT INTO orders_products (order_id,product_id,quantity) VALUES ($1,$2,$3);";
+            await connection.query(query2,[orderId,productsIds[i],amounts[i]]);
+        }
+        connection.release();
+        //---------------------
+        res.send({"msg":"Order created"}).status(200);
     }
     catch(err)
     {
-        console.log("handler - order - create - error");
-        res.send("Wrong inputs");
+        console.log(err);
+        res.send({"msg":"Wrong inputs"});
     }
 };
 
 const updateHandler = async(req:Request,res:Response)=>{
-    try
-    {
-        const order_table = new OrderTable();
-        const ID:number = 1;
-        const o:Order = new Order(2,1);
-        const result = await order_table.update(o,ID);
-        res.json(result).status(200);
-    }
-    catch(err)
-    {
-        console.log("handler - order - update - error");
-        res.send("Wrong inputs");
-    }
+    // 
 };
 
 const deleteHandler = async(req:Request,res:Response)=>{

@@ -6,10 +6,12 @@ class Order
     private total_money:number = 0;
     private number_of_products:number = 0;
 
-    constructor(userId:number,status:number)
+    constructor(userId:number,status:number,totalMoney:number,numberOfproducts:number)
     {
         this.user_id = userId;
         this.status = status;
+        this.total_money = totalMoney;
+        this.number_of_products = numberOfproducts;
     }
 
     public getUserId():number
