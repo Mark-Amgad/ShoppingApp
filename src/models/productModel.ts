@@ -18,6 +18,7 @@ export class ProductTable
         catch(err)
         {
             console.log("model - product -index-error");
+            console.log(err);
             throw new Error(`${err}`);
         }
     }

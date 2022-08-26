@@ -1,11 +1,16 @@
 import {Pool} from "pg";
+import dotenv from "dotenv";
 
+dotenv.config();
 
-const host = "127.0.0.1"; // localhost
-const userName = "postgres";
-const password = "mark1999";
-const databaseName = "mobi_shop_system";
-
+const host = process.env.POSTGRES_HOST || "localhost"; // localhost
+const userName = process.env.POSTGRES_USERNAME  || "postgres";
+const password = process.env.POSTGRES_PASSWORD || "mark1999";
+const databaseName = process.env.POSTGRES_DATABASENAME || "mobi_shop_system";
+console.log(host);
+console.log(userName);
+console.log(password);
+console.log(databaseName);
 const db = new Pool({
     host:host,
     user:userName,
